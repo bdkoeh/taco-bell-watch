@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tbell Compass – Point Your Wrist at Tacos</title>
+<meta name="description" content="Tbell Compass turns your Apple Watch into a taco-finding compass. It points you toward the nearest Taco Bell in real time.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0D0018;
+    color: #fff;
+    font-family: -apple-system, 'SF Pro', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(104,42,141,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 32px;
+    box-shadow: 0 0 40px rgba(104,42,141,0.4);
+  }
+
+  .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #E63CB4, #BE50FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: 20px;
+    color: rgba(160,126,186,0.7);
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+
+  .taco-big {
+    font-size: 80px;
+    margin-bottom: 32px;
+    filter: drop-shadow(0 0 30px rgba(190,80,255,0.4));
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+    max-width: 400px;
+  }
+
+  .feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .feature .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E63CB4;
+    box-shadow: 0 0 8px rgba(230,60,180,0.5);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .badge {
+    margin-bottom: 48px;
+  }
+
+  .badge a img {
+    height: 50px;
+  }
+
+  .footer {
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(104,42,141,0.15);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    color: rgba(160,126,186,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .footer-links a:hover {
+    color: #E63CB4;
+  }
+
+  .copyright {
+    font-size: 13px;
+    color: rgba(160,126,186,0.3);
+  }
+
+  .req {
+    font-size: 13px;
+    color: rgba(160,126,186,0.4);
+    margin-top: 16px;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 36px; }
+    .tagline { font-size: 17px; }
+    .taco-big { font-size: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="taco-big">🌮</div>
+
+  <h1><span>Tbell Compass</span></h1>
+  <p class="tagline">Point your wrist at tacos. It's that simple.</p>
+
+  <div class="features">
+    <div class="feature"><div class="dot"></div> Real-time compass pointing to the nearest Taco Bell</div>
+    <div class="feature"><div class="dot"></div> Taco emoji orbits the dial showing where to go</div>
+    <div class="feature"><div class="dot"></div> Hear the iconic DONG when you're facing the right way</div>
+    <div class="feature"><div class="dot"></div> Distance in miles or feet — get closer, get tacos</div>
+  </div>
+
+  <p class="req">Requires Apple Watch Series 5 or later with watchOS 10+. Uses Apple Maps to find nearby locations.</p>
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="support.html">Support</a>
+  </div>
+  <p class="copyright">&copy; 2026 Tbell Compass. Not affiliated with Taco Bell or Yum! Brands.</p>
+</div>
+
+</body>
+</html>

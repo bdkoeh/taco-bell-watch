@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; }
+  body {
+    width: 1024px;
+    height: 1024px;
+    overflow: hidden;
+    background: #1A0530;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    width: 1024px;
+    height: 1024px;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1A0530;
+  }
+  .icon svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .taco {
+    position: relative;
+    z-index: 3;
+    font-size: 340px;
+    filter: drop-shadow(0 12px 48px rgba(0,0,0,0.6)) drop-shadow(0 0 64px rgba(190,80,255,0.4));
+  }
+</style>
+</head>
+<body>
+<div class="icon" id="icon"></div>
+<script>
+const svgNS = 'http://www.w3.org/2000/svg';
+const container = document.getElementById('icon');
+const svg = document.createElementNS(svgNS, 'svg');
+svg.setAttribute('viewBox', '0 0 1024 1024');
+svg.setAttribute('fill', 'none');
+svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
+
+const cx = 512, cy = 512;
+
+// Outer ring — large to fill the square
+const outerRing = document.createElementNS(svgNS, 'circle');
+outerRing.setAttribute('cx', cx); outerRing.setAttribute('cy', cy);
+outerRing.setAttribute('r', 420);
+outerRing.setAttribute('stroke', 'rgba(190,80,255,0.2)');
+outerRing.setAttribute('stroke-width', '8');
+svg.appendChild(outerRing);
+
+// Inner ring
+const innerRing = document.createElementNS(svgNS, 'circle');
+innerRing.setAttribute('cx', cx); innerRing.setAttribute('cy', cy);
+innerRing.setAttribute('r', 295);
+innerRing.setAttribute('stroke', 'rgba(104,42,141,0.12)');
+innerRing.setAttribute('stroke-width', '4');
+svg.appendChild(innerRing);
+
+// Tick marks
+for (let i = 0; i < 72; i++) {
+  const angle = (i * 5 - 90) * Math.PI / 180;
+  const isMajor = i % 6 === 0;
+  const isCardinal = i % 18 === 0;
+  const outerR = 420;
+  const innerR = outerR - (isMajor ? 44 : 16);
+
+  const line = document.createElementNS(svgNS, 'line');
+  line.setAttribute('x1', cx + Math.cos(angle) * outerR);
+  line.setAttribute('y1', cy + Math.sin(angle) * outerR);
+  line.setAttribute('x2', cx + Math.cos(angle) * innerR);
+  line.setAttribute('y2', cy + Math.sin(angle) * innerR);
+
+  if (isCardinal) {
+    line.setAttribute('stroke', i === 0 ? 'rgba(230,60,180,0.6)' : 'rgba(160,126,186,0.35)');
+    line.setAttribute('stroke-width', '14');
+  } else if (isMajor) {
+    line.setAttribute('stroke', 'rgba(190,80,255,0.3)');
+    line.setAttribute('stroke-width', '8');
+  } else {
+    line.setAttribute('stroke', 'rgba(104,42,141,0.2)');
+    line.setAttribute('stroke-width', '3');
+  }
+  line.setAttribute('stroke-linecap', 'round');
+  svg.appendChild(line);
+}
+
+// Defs
+const defs = document.createElementNS(svgNS, 'defs');
+const grad = document.createElementNS(svgNS, 'linearGradient');
+grad.setAttribute('id', 'ng');
+grad.setAttribute('x1', '512'); grad.setAttribute('y1', '80');
+grad.setAttribute('x2', '512'); grad.setAttribute('y2', '944');
+grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+const s1 = document.createElementNS(svgNS, 'stop');
+s1.setAttribute('offset', '0'); s1.setAttribute('stop-color', '#E63CB4');
+const s2 = document.createElementNS(svgNS, 'stop');
+s2.setAttribute('offset', '1'); s2.setAttribute('stop-color', '#682A8D');
+s2.setAttribute('stop-opacity', '0.5');
+grad.appendChild(s1); grad.appendChild(s2);
+defs.appendChild(grad);
+
+const glow = document.createElementNS(svgNS, 'filter');
+glow.setAttribute('id', 'glow');
+glow.setAttribute('x', '-20%'); glow.setAttribute('y', '-20%');
+glow.setAttribute('width', '140%'); glow.setAttribute('height', '140%');
+const blur = document.createElementNS(svgNS, 'feGaussianBlur');
+blur.setAttribute('stdDeviation', '18'); blur.setAttribute('result', 'blur');
+glow.appendChild(blur);
+const merge = document.createElementNS(svgNS, 'feMerge');
+const mn1 = document.createElementNS(svgNS, 'feMergeNode'); mn1.setAttribute('in', 'blur');
+const mn2 = document.createElementNS(svgNS, 'feMergeNode'); mn2.setAttribute('in', 'SourceGraphic');
+merge.appendChild(mn1); merge.appendChild(mn2);
+glow.appendChild(merge);
+defs.appendChild(glow);
+svg.appendChild(defs);
+
+// Needle pointing northwest — scaled up
+const needle = document.createElementNS(svgNS, 'path');
+needle.setAttribute('d', 'M512 120 Q554 290 570 480 L538 870 Q512 908 486 870 L454 480 Q470 290 512 120Z');
+needle.setAttribute('fill', 'url(#ng)');
+needle.setAttribute('filter', 'url(#glow)');
+needle.setAttribute('transform', 'rotate(-45 512 512)');
+svg.appendChild(needle);
+
+// Center hub
+const hubBg = document.createElementNS(svgNS, 'circle');
+hubBg.setAttribute('cx', cx); hubBg.setAttribute('cy', cy);
+hubBg.setAttribute('r', '50'); hubBg.setAttribute('fill', '#2D0A48');
+svg.appendChild(hubBg);
+
+container.appendChild(svg);
+
+// Taco
+const taco = document.createElement('span');
+taco.className = 'taco';
+taco.textContent = '🌮';
+container.appendChild(taco);
+</script>
+</body>
+</html>

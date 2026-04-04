@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/TacoBellWatch.app</string>
+		<key>Architectures</key>
+		<array>
+			<string>arm64</string>
+		</array>
+		<key>CFBundleIdentifier</key>
+		<string>com.tacobellwatch.app</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0</string>
+		<key>CFBundleVersion</key>
+		<string>4</string>
+		<key>SigningIdentity</key>
+		<string>Apple Development: bdkoeh@gmail.com (2CV9836RU7)</string>
+		<key>Team</key>
+		<string>264SGEWUH5</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2026-04-03T20:57:50Z</date>
+	<key>Distributions</key>
+	<array>
+		<dict>
+			<key>adamId</key>
+			<string>6761598622</string>
+			<key>certificateSHA1</key>
+			<string>9188586FD4FA376E03CBE3D9B7EAA1EA372A2465</string>
+			<key>destination</key>
+			<string>upload</string>
+			<key>identifier</key>
+			<string>e5cad70f-5109-4000-a46b-43c225f2ef45</string>
+			<key>preparationEvent</key>
+			<dict>
+				<key>date</key>
+				<string>2026-04-03T20:57:50Z</string>
+				<key>errors</key>
+				<array/>
+				<key>infoMessages</key>
+				<array/>
+				<key>shortTitle</key>
+				<string>Prepared</string>
+				<key>state</key>
+				<string>success</string>
+				<key>title</key>
+				<string>Prepared archive for uploading</string>
+				<key>warnings</key>
+				<array/>
+			</dict>
+			<key>providerId</key>
+			<string>64b5548d-8fda-49eb-8974-43dba5ceffb6</string>
+			<key>task</key>
+			<string>distribute</string>
+			<key>teamID</key>
+			<string>264SGEWUH5</string>
+			<key>uploadDestination</key>
+			<string>App Store</string>
+			<key>uploadEvent</key>
+			<dict>
+				<key>date</key>
+				<string>2026-04-03T20:59:15Z</string>
+				<key>errors</key>
+				<array/>
+				<key>infoMessages</key>
+				<array/>
+				<key>shortTitle</key>
+				<string>Uploaded</string>
+				<key>state</key>
+				<string>success</string>
+				<key>title</key>
+				<string>Uploaded to Apple</string>
+				<key>warnings</key>
+				<array/>
+			</dict>
+			<key>uploadedBuildNumber</key>
+			<string>4</string>
+		</dict>
+	</array>
+	<key>Name</key>
+	<string>TacoBellWatchStub</string>
+	<key>SchemeName</key>
+	<string>TacoBellWatchStub</string>
+</dict>
+</plist>

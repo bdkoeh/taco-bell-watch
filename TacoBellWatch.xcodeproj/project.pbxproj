@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04EFDCFA50316BE7E33784EB /* TacoBellWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E4E6F11DD01D2BB7E4ABA /* TacoBellWatchApp.swift */; };
+		0937DD36A1F082AA2D7321E1 /* BearingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D1332492B02665D0BBF959 /* BearingCalculator.swift */; };
+		3F6535B685852F0FCAA53D45 /* CompassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF815D96506928CF585379D /* CompassViewModel.swift */; };
+		49C66879504250565773C91A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73EB42F48FFC8E7BAE99AD /* Colors.swift */; };
+		7542AEC1738B4A0737BEE053 /* iOSStubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B9AD5EB144FC4239EB14B7 /* iOSStubApp.swift */; };
+		96BD5F43B8FDAB44494D445D /* TacoBellWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 12318C144F0232B19AA00738 /* TacoBellWatch.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A8991B72102C8ECA060E1C0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E39446F68D7F40491A5A362 /* Assets.xcassets */; };
+		BCBD690FA811DCDB63F9CB95 /* taco_bell_bong.wav in Resources */ = {isa = PBXBuildFile; fileRef = AC8163268F33A1FAAF1D0990 /* taco_bell_bong.wav */; };
+		D4128BA952AA3173D3046861 /* TacoBellSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE536A2DDB728BAF4FFF230 /* TacoBellSearchService.swift */; };
+		DD94FE5AEC96F7DFB8BD1306 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573236D6E0D88329BBCB5514 /* StartView.swift */; };
+		E038580C2DA5A6C33BE4B69C /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61A0E4F4219DE9D466E8C8 /* LocationService.swift */; };
+		E2ACE4240DAF51E32EBC567D /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971082E4717F5EFD09EE05C1 /* SoundPlayer.swift */; };
+		E55DED8F5500E6A54D977558 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B47989CEA05D6D15F522139A /* PrivacyInfo.xcprivacy */; };
+		F0214A30E5E1EC7327205DC5 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE6710AD8E7519A40200319 /* CompassView.swift */; };
+		F42339AAB442430C1B40324D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE258D48DB3FF3F75807D590 /* Assets.xcassets */; };
+		FAEB878D750AD9295F10F203 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C065E001FF074EA3148E2CC /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5CBEB9DD05087BE3B098182A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D397F045F882D11F1394714 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4CFAE3B08D88038201AD2B9;
+			remoteInfo = TacoBellWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9BF562C74C632E3486F1F692 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				96BD5F43B8FDAB44494D445D /* TacoBellWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		12318C144F0232B19AA00738 /* TacoBellWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TacoBellWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B9AD5EB144FC4239EB14B7 /* iOSStubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSStubApp.swift; sourceTree = "<group>"; };
+		455E4E6F11DD01D2BB7E4ABA /* TacoBellWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacoBellWatchApp.swift; sourceTree = "<group>"; };
+		464A413E8F83920F331818C9 /* TacoBellWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TacoBellWatch.entitlements; sourceTree = "<group>"; };
+		573236D6E0D88329BBCB5514 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		5E39446F68D7F40491A5A362 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63D1332492B02665D0BBF959 /* BearingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearingCalculator.swift; sourceTree = "<group>"; };
+		7F56C0137EB70A6C74C2E14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B61A0E4F4219DE9D466E8C8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		8FF815D96506928CF585379D /* CompassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewModel.swift; sourceTree = "<group>"; };
+		971082E4717F5EFD09EE05C1 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		9C065E001FF074EA3148E2CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AC73EB42F48FFC8E7BAE99AD /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AC8163268F33A1FAAF1D0990 /* taco_bell_bong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = taco_bell_bong.wav; sourceTree = "<group>"; };
+		B47989CEA05D6D15F522139A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BC63C1AA56CC8506DABEED27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BDE6710AD8E7519A40200319 /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		CEE536A2DDB728BAF4FFF230 /* TacoBellSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacoBellSearchService.swift; sourceTree = "<group>"; };
+		EE258D48DB3FF3F75807D590 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F43917440D593CD6D158B49F /* TacoBellWatchStub.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TacoBellWatchStub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		00293D57DB5FA615696CC0BA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8B61A0E4F4219DE9D466E8C8 /* LocationService.swift */,
+				CEE536A2DDB728BAF4FFF230 /* TacoBellSearchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2630B5E99CFE60942B2162B4 /* iOSStub */ = {
+			isa = PBXGroup;
+			children = (
+				EE258D48DB3FF3F75807D590 /* Assets.xcassets */,
+				7F56C0137EB70A6C74C2E14E /* Info.plist */,
+				28B9AD5EB144FC4239EB14B7 /* iOSStubApp.swift */,
+				B47989CEA05D6D15F522139A /* PrivacyInfo.xcprivacy */,
+			);
+			path = iOSStub;
+			sourceTree = "<group>";
+		};
+		377F52486539259589B0F820 = {
+			isa = PBXGroup;
+			children = (
+				2630B5E99CFE60942B2162B4 /* iOSStub */,
+				F0D8CFA6972A752487F5E203 /* TacoBellWatch */,
+				39CF1E6A47AEB47D10040778 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		39CF1E6A47AEB47D10040778 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12318C144F0232B19AA00738 /* TacoBellWatch.app */,
+				F43917440D593CD6D158B49F /* TacoBellWatchStub.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5974EF38E588E5188D4003C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDE6710AD8E7519A40200319 /* CompassView.swift */,
+				573236D6E0D88329BBCB5514 /* StartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E7E00AFCC41F8EF2C7B03CEC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC8163268F33A1FAAF1D0990 /* taco_bell_bong.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EF88CCCE98F586DCA225F802 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				63D1332492B02665D0BBF959 /* BearingCalculator.swift */,
+				AC73EB42F48FFC8E7BAE99AD /* Colors.swift */,
+				971082E4717F5EFD09EE05C1 /* SoundPlayer.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F0D8CFA6972A752487F5E203 /* TacoBellWatch */ = {
+			isa = PBXGroup;
+			children = (
+				5E39446F68D7F40491A5A362 /* Assets.xcassets */,
+				9C065E001FF074EA3148E2CC /* ContentView.swift */,
+				BC63C1AA56CC8506DABEED27 /* Info.plist */,
+				464A413E8F83920F331818C9 /* TacoBellWatch.entitlements */,
+				455E4E6F11DD01D2BB7E4ABA /* TacoBellWatchApp.swift */,
+				E7E00AFCC41F8EF2C7B03CEC /* Resources */,
+				00293D57DB5FA615696CC0BA /* Services */,
+				EF88CCCE98F586DCA225F802 /* Utilities */,
+				FB7E0C93E8085EF585CEB62F /* ViewModels */,
+				5974EF38E588E5188D4003C1 /* Views */,
+			);
+			path = TacoBellWatch;
+			sourceTree = "<group>";
+		};
+		FB7E0C93E8085EF585CEB62F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8FF815D96506928CF585379D /* CompassViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4DE5EC7FA6721B30B5BF2F39 /* TacoBellWatchStub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AA9001D772CD88D630F6122 /* Build configuration list for PBXNativeTarget "TacoBellWatchStub" */;
+			buildPhases = (
+				1206C2DA47C7E39E7F13EE7E /* Sources */,
+				BCB8CC920D5BC81126CBB774 /* Resources */,
+				9BF562C74C632E3486F1F692 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76D8816F012E79A208F139B7 /* PBXTargetDependency */,
+			);
+			name = TacoBellWatchStub;
+			packageProductDependencies = (
+			);
+			productName = TacoBellWatchStub;
+			productReference = F43917440D593CD6D158B49F /* TacoBellWatchStub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4CFAE3B08D88038201AD2B9 /* TacoBellWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0BEA322631FF6A232711C47 /* Build configuration list for PBXNativeTarget "TacoBellWatch" */;
+			buildPhases = (
+				18CFEE6A9A2F00511B4ADCAB /* Sources */,
+				6DA2B7239FBE29C11C5A45EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TacoBellWatch;
+			packageProductDependencies = (
+			);
+			productName = TacoBellWatch;
+			productReference = 12318C144F0232B19AA00738 /* TacoBellWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D397F045F882D11F1394714 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					4DE5EC7FA6721B30B5BF2F39 = {
+						DevelopmentTeam = 264SGEWUH5;
+					};
+					D4CFAE3B08D88038201AD2B9 = {
+						DevelopmentTeam = 264SGEWUH5;
+					};
+				};
+			};
+			buildConfigurationList = D58159DA38B7B5D0F43E7EC6 /* Build configuration list for PBXProject "TacoBellWatch" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 377F52486539259589B0F820;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4CFAE3B08D88038201AD2B9 /* TacoBellWatch */,
+				4DE5EC7FA6721B30B5BF2F39 /* TacoBellWatchStub */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DA2B7239FBE29C11C5A45EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8991B72102C8ECA060E1C0C /* Assets.xcassets in Resources */,
+				BCBD690FA811DCDB63F9CB95 /* taco_bell_bong.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCB8CC920D5BC81126CBB774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42339AAB442430C1B40324D /* Assets.xcassets in Resources */,
+				E55DED8F5500E6A54D977558 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1206C2DA47C7E39E7F13EE7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7542AEC1738B4A0737BEE053 /* iOSStubApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CFEE6A9A2F00511B4ADCAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0937DD36A1F082AA2D7321E1 /* BearingCalculator.swift in Sources */,
+				49C66879504250565773C91A /* Colors.swift in Sources */,
+				F0214A30E5E1EC7327205DC5 /* CompassView.swift in Sources */,
+				3F6535B685852F0FCAA53D45 /* CompassViewModel.swift in Sources */,
+				FAEB878D750AD9295F10F203 /* ContentView.swift in Sources */,
+				E038580C2DA5A6C33BE4B69C /* LocationService.swift in Sources */,
+				E2ACE4240DAF51E32EBC567D /* SoundPlayer.swift in Sources */,
+				DD94FE5AEC96F7DFB8BD1306 /* StartView.swift in Sources */,
+				D4128BA952AA3173D3046861 /* TacoBellSearchService.swift in Sources */,
+				04EFDCFA50316BE7E33784EB /* TacoBellWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76D8816F012E79A208F139B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4CFAE3B08D88038201AD2B9 /* TacoBellWatch */;
+			targetProxy = 5CBEB9DD05087BE3B098182A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		37AEA798BDA9956B0E23FE7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOSStub/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tacobellwatch.app;
+				PRODUCT_NAME = TacoBellWatch;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6642BE17799C8E21BE16B5F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOSStub/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tacobellwatch.app;
+				PRODUCT_NAME = TacoBellWatch;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CDAE9CFACB8D201FFF8E5D63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TacoBellWatch/TacoBellWatch.entitlements;
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TacoBellWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tacobellwatch.app.watchkitapp;
+				PRODUCT_MODULE_NAME = TacoBellWatch;
+				PRODUCT_NAME = TacoBellWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		D4A55DF3BAD66A8238B200C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 264SGEWUH5;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		F50A69D96047B1540EA90461 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 264SGEWUH5;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		F9F663073D2BB6C35824E7B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TacoBellWatch/TacoBellWatch.entitlements;
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TacoBellWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tacobellwatch.app.watchkitapp;
+				PRODUCT_MODULE_NAME = TacoBellWatch;
+				PRODUCT_NAME = TacoBellWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AA9001D772CD88D630F6122 /* Build configuration list for PBXNativeTarget "TacoBellWatchStub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37AEA798BDA9956B0E23FE7C /* Debug */,
+				6642BE17799C8E21BE16B5F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B0BEA322631FF6A232711C47 /* Build configuration list for PBXNativeTarget "TacoBellWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9F663073D2BB6C35824E7B5 /* Debug */,
+				CDAE9CFACB8D201FFF8E5D63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D58159DA38B7B5D0F43E7EC6 /* Build configuration list for PBXProject "TacoBellWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F50A69D96047B1540EA90461 /* Debug */,
+				D4A55DF3BAD66A8238B200C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D397F045F882D11F1394714 /* Project object */;
+}

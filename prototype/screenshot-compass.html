@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 416px;
+    height: 496px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 4px;
+  }
+
+  .restaurant-name {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(230,60,180,0.6);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .compass-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+
+  .compass-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(104,42,141,0.15) 0%, transparent 50%),
+      radial-gradient(circle, rgba(45,10,72,0.8) 0%, #000 80%);
+  }
+
+  .glow-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 3px solid rgba(190,80,255,0.15);
+    box-shadow: 0 0 24px rgba(190,80,255,0.1), inset 0 0 24px rgba(190,80,255,0.05);
+  }
+
+  .compass-dial {
+    position: absolute;
+    inset: 0;
+  }
+
+  .compass-ticks { position: absolute; inset: 0; }
+  .compass-ticks svg { width: 100%; height: 100%; }
+
+  .cardinal {
+    position: absolute;
+    font-size: 22px;
+    font-weight: 900;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    top: 50%; left: 50%;
+    width: 28px; height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cardinal.n { color: #E63CB4; text-shadow: 0 0 16px rgba(230,60,180,0.5); transform: translate(-50%, -50%) translateY(-112px); }
+  .cardinal.e { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateX(112px); }
+  .cardinal.s { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateY(112px); }
+  .cardinal.w { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateX(-112px); }
+
+  .radar-ring {
+    position: absolute;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .radar-ring:nth-child(1) { width: 60px; height: 60px; border: 1px solid rgba(104,42,141,0.12); }
+  .radar-ring:nth-child(2) { width: 108px; height: 108px; border: 1px solid rgba(104,42,141,0.12); }
+  .radar-ring:nth-child(3) { width: 156px; height: 156px; border: 1px solid rgba(104,42,141,0.12); }
+  .radar-ring:nth-child(4) { width: 204px; height: 204px; border: 2px solid rgba(104,42,141,0.2); }
+
+  /* Needle */
+  .needle-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .needle {
+    width: 28px;
+    height: 88px;
+    filter: drop-shadow(0 0 16px rgba(230,60,180,0.5));
+    margin-top: -44px;
+  }
+
+  .needle svg { width: 100%; height: 100%; }
+
+  /* Chevron */
+  .chevron {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 12px solid rgba(230,60,180,0.4);
+    z-index: 20;
+  }
+
+  /* Taco marker */
+  .taco-orbit {
+    position: absolute;
+    inset: 0;
+    transform: rotate(35deg);
+  }
+
+  .taco-marker {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) translateY(-124px);
+    font-size: 40px;
+    filter: drop-shadow(0 0 16px rgba(190,80,255,0.7));
+    z-index: 10;
+  }
+
+  .center-hub {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #2D0A48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+
+  .center-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #E63CB4;
+    box-shadow: 0 0 12px rgba(230,60,180,0.8);
+  }
+
+  .distance-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .distance-num {
+    font-size: 44px;
+    font-weight: 800;
+    font-family: -apple-system, 'SF Pro Rounded', sans-serif;
+    background: linear-gradient(135deg, #fff 0%, #BE50FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .distance-unit {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(160,126,186,0.6);
+  }
+
+  .tagline {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(230,60,180,0.4);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="restaurant-name">TACO BELL #4521</div>
+
+  <div class="compass-container">
+    <div class="compass-bg"></div>
+    <div class="glow-ring"></div>
+
+    <div class="compass-dial" id="dial">
+      <div class="radar-ring"></div>
+      <div class="radar-ring"></div>
+      <div class="radar-ring"></div>
+      <div class="radar-ring"></div>
+      <div class="compass-ticks"><svg viewBox="0 0 280 280" id="ticksSvg"></svg></div>
+      <div class="cardinal n">N</div>
+      <div class="cardinal e">E</div>
+      <div class="cardinal s">S</div>
+      <div class="cardinal w">W</div>
+    </div>
+
+    <div class="needle-container">
+      <div class="needle">
+        <svg viewBox="0 0 28 88" fill="none">
+          <defs>
+            <linearGradient id="ng" x1="14" y1="0" x2="14" y2="88" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#E63CB4"/>
+              <stop offset="1" stop-color="#682A8D"/>
+            </linearGradient>
+          </defs>
+          <path d="M14 0 Q20 16 24 44 L18 80 Q14 88 10 80 L4 44 Q8 16 14 0Z" fill="url(#ng)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="chevron"></div>
+
+    <div class="taco-orbit">
+      <div class="taco-marker">🌮</div>
+    </div>
+
+    <div class="center-hub"><div class="center-dot"></div></div>
+  </div>
+
+  <div class="distance-row">
+    <span class="distance-num">1.3</span>
+    <span class="distance-unit">mi</span>
+  </div>
+  <div class="tagline">TACO RADAR ACTIVE</div>
+</div>
+
+<script>
+function drawTicks(svg) {
+  const cx = 140, cy = 140, outerR = 116, majorLen = 12, minorLen = 6;
+  for (let i = 0; i < 72; i++) {
+    const angle = (i * 5 - 90) * Math.PI / 180;
+    const isMajor = i % 6 === 0;
+    const innerR = outerR - (isMajor ? majorLen : minorLen);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx + Math.cos(angle) * outerR);
+    line.setAttribute('y1', cy + Math.sin(angle) * outerR);
+    line.setAttribute('x2', cx + Math.cos(angle) * innerR);
+    line.setAttribute('y2', cy + Math.sin(angle) * innerR);
+    line.setAttribute('stroke', isMajor ? 'rgba(190,80,255,0.35)' : 'rgba(104,42,141,0.3)');
+    line.setAttribute('stroke-width', isMajor ? '3' : '1');
+    line.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(line);
+  }
+}
+drawTicks(document.getElementById('ticksSvg'));
+
+// Rotate dial slightly to simulate heading
+document.getElementById('dial').style.transform = 'rotate(-20deg)';
+</script>
+</body>
+</html>

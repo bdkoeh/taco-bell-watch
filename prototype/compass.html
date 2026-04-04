@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taco Bell Watch – Compass Prototype</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-family: -apple-system, 'SF Pro', 'Helvetica Neue', sans-serif;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 30px 20px 160px;
+  }
+
+  .section { text-align: center; }
+
+  .label {
+    color: #888;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .sublabel {
+    color: #555;
+    font-size: 10px;
+    font-family: 'SF Mono', monospace;
+    margin-top: 8px;
+    max-width: 198px;
+  }
+
+  .watch-frame {
+    position: relative;
+    width: 198px;
+    height: 242px;
+    background: #000;
+    border-radius: 48px;
+    border: 3px solid #333;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .watch-frame::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: 48px;
+    border: 1px solid #444;
+    pointer-events: none;
+  }
+
+  /* ===== COMPASS ===== */
+  .compass-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 2px;
+  }
+
+  .restaurant-name {
+    font-size: 8px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(230,60,180,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .compass-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+  }
+
+  .compass-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(104,42,141,0.15) 0%, transparent 50%),
+      radial-gradient(circle, rgba(45,10,72,0.8) 0%, #000 80%);
+  }
+
+  .glow-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(190,80,255,0.15);
+    box-shadow: 0 0 12px rgba(190,80,255,0.1), inset 0 0 12px rgba(190,80,255,0.05);
+  }
+
+  /* The whole dial rotates with heading */
+  .compass-dial {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .radar-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 0.5px solid rgba(104,42,141,0.12);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .radar-ring:nth-child(1) { width: 30px; height: 30px; }
+  .radar-ring:nth-child(2) { width: 54px; height: 54px; }
+  .radar-ring:nth-child(3) { width: 78px; height: 78px; }
+  .radar-ring:nth-child(4) { width: 102px; height: 102px; border-color: rgba(104,42,141,0.2); border-width: 1px; }
+
+  .compass-ticks { position: absolute; inset: 0; }
+  .compass-ticks svg { width: 100%; height: 100%; }
+
+  .cardinal {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    top: 50%; left: 50%;
+    width: 14px; height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cardinal.n { color: #E63CB4; text-shadow: 0 0 8px rgba(230,60,180,0.5); transform: translate(-50%, -50%) translateY(-56px); }
+  .cardinal.e { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateX(56px); }
+  .cardinal.s { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateY(56px); }
+  .cardinal.w { color: rgba(160,126,186,0.5); transform: translate(-50%, -50%) translateX(-56px); }
+
+  .cardinal span {
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Needle — always points to device heading (north on the dial) */
+  .needle-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Needle does NOT rotate — it always points up (the dial rotates around it) */
+  }
+
+  .needle {
+    width: 14px;
+    height: 44px;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(230,60,180,0.5));
+    margin-top: -22px;
+  }
+
+  .needle svg { width: 100%; height: 100%; }
+
+  .center-hub {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #2D0A48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+
+  .center-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #E63CB4;
+    box-shadow: 0 0 6px rgba(230,60,180,0.8);
+  }
+
+  /* Taco marker on the perimeter */
+  .taco-marker-orbit {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .taco-marker {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) translateY(-62px);
+    font-size: 20px;
+    filter: drop-shadow(0 0 8px rgba(190,80,255,0.7));
+    z-index: 10;
+    line-height: 1;
+    transition: filter 0.3s, transform 0.3s;
+  }
+
+  /* When aligned — taco at top, make it pop */
+  .taco-marker.aligned {
+    filter: drop-shadow(0 0 14px rgba(230,60,180,0.9)) drop-shadow(0 0 24px rgba(230,60,180,0.4));
+    transform: translate(-50%, -50%) translateY(-62px) scale(1.2);
+  }
+
+  /* Alignment indicator — chevron at top */
+  .align-indicator {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(230,60,180,0.4);
+    z-index: 20;
+  }
+
+  .align-indicator.active {
+    border-top-color: #E63CB4;
+    filter: drop-shadow(0 0 4px rgba(230,60,180,0.8));
+  }
+
+  /* Distance */
+  .distance-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .distance-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    font-family: -apple-system, 'SF Pro Rounded', sans-serif;
+    background: linear-gradient(135deg, #fff 0%, #BE50FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .distance-unit {
+    font-size: 10px;
+    font-weight: 500;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(160,126,186,0.6);
+  }
+
+  .tagline {
+    font-size: 7px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(230,60,180,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+    transition: color 0.3s;
+  }
+
+  .tagline.active {
+    color: rgba(230,60,180,0.8);
+  }
+
+  /* DONG flash overlay */
+  .dong-flash {
+    position: absolute;
+    inset: 0;
+    border-radius: 48px;
+    background: radial-gradient(circle, rgba(230,60,180,0.3) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s;
+  }
+
+  .dong-flash.active {
+    animation: flash 0.6s ease-out;
+  }
+
+  /* ===== START SCREEN ===== */
+  .start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .start-bg-glow {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,10,72,0.5) 0%, transparent 70%);
+    animation: breathe 2.2s ease-in-out infinite alternate;
+  }
+
+  .start-rings { position: absolute; }
+
+  .start-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(230,60,180,0.12);
+    animation: breathe 2.2s ease-in-out infinite alternate;
+  }
+  .start-ring:nth-child(1) { width: 84px; height: 84px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .start-ring:nth-child(2) { width: 102px; height: 102px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(190,80,255,0.1); }
+  .start-ring:nth-child(3) { width: 120px; height: 120px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(104,42,141,0.08); }
+
+  .orbit-ring {
+    position: absolute;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    border: 0.5px dashed rgba(190,80,255,0.2);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: spin 20s linear infinite;
+  }
+
+  .start-btn {
+    position: relative;
+    width: 86px; height: 86px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #8B3BB5 0%, #682A8D 40%, #2D0A48 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(104,42,141,0.5);
+    animation: btnGlow 2s ease-in-out infinite alternate;
+    outline: 2px solid rgba(230,60,180,0.3);
+    outline-offset: -2px;
+  }
+
+  .start-btn .taco-emoji {
+    font-size: 36px;
+    filter: drop-shadow(0 0 10px rgba(190,80,255,0.8));
+    animation: taco-wobble 2s ease-in-out infinite;
+  }
+
+  .start-labels {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .start-labels .find {
+    font-size: 10px;
+    font-weight: 800;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: rgba(160,126,186,0.5);
+    letter-spacing: 6px;
+  }
+
+  .start-labels .taco-bell {
+    font-size: 15px;
+    font-weight: 900;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    background: linear-gradient(90deg, #E63CB4, #BE50FF, #E63CB4);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* ===== CONTROLS ===== */
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    background: #1a1a1a;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #333;
+  }
+
+  .control-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .controls input[type="range"] {
+    width: 200px;
+    accent-color: #682A8D;
+  }
+
+  .controls label {
+    color: #888;
+    font-size: 12px;
+    font-family: 'SF Mono', monospace;
+    width: 100px;
+    text-align: right;
+  }
+
+  .controls .val {
+    color: #aaa;
+    font-family: 'SF Mono', monospace;
+    font-size: 12px;
+    width: 40px;
+  }
+
+  .dong-label {
+    font-size: 11px;
+    font-family: 'SF Mono', monospace;
+    color: #E63CB4;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-weight: 700;
+  }
+
+  .dong-label.active { opacity: 1; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes breathe {
+    from { transform: translate(-50%,-50%) scale(0.92); }
+    to { transform: translate(-50%,-50%) scale(1.0); }
+  }
+  @keyframes btnGlow {
+    from { box-shadow: 0 0 20px rgba(104,42,141,0.4), 0 0 40px rgba(104,42,141,0.15); }
+    to { box-shadow: 0 0 35px rgba(104,42,141,0.6), 0 0 60px rgba(230,60,180,0.15); }
+  }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  @keyframes taco-wobble {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    25% { transform: rotate(3deg) scale(1.05); }
+    50% { transform: rotate(-2deg) scale(1); }
+    75% { transform: rotate(4deg) scale(1.03); }
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div class="section">
+  <div class="label">Start</div>
+  <div class="watch-frame">
+    <div class="start-screen">
+      <div class="start-bg-glow"></div>
+      <div class="start-rings">
+        <div class="start-ring"></div>
+        <div class="start-ring"></div>
+        <div class="start-ring"></div>
+      </div>
+      <div class="orbit-ring"></div>
+      <div class="start-btn"><span class="taco-emoji">🌮</span></div>
+      <div class="start-labels">
+        <div class="find">FIND</div>
+        <div class="taco-bell">TACO BELL</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPASS -->
+<div class="section">
+  <div class="label">Compass</div>
+  <div class="watch-frame" id="watchFrame">
+    <div class="dong-flash" id="dongFlash"></div>
+    <div class="compass-screen">
+      <div class="restaurant-name">TACO BELL #4521</div>
+
+      <div class="compass-container">
+        <div class="compass-bg"></div>
+        <div class="glow-ring"></div>
+
+        <!-- Dial rotates with heading — shows cardinal directions -->
+        <div class="compass-dial" id="dial">
+          <div class="radar-ring"></div>
+          <div class="radar-ring"></div>
+          <div class="radar-ring"></div>
+          <div class="radar-ring"></div>
+          <div class="compass-ticks"><svg viewBox="0 0 140 140" id="ticksSvg"></svg></div>
+          <div class="cardinal n"><span class="clabel">N</span></div>
+          <div class="cardinal e"><span class="clabel">E</span></div>
+          <div class="cardinal s"><span class="clabel">S</span></div>
+          <div class="cardinal w"><span class="clabel">W</span></div>
+        </div>
+
+        <!-- Needle — always points UP (toward your heading direction) -->
+        <div class="needle-container">
+          <div class="needle">
+            <svg viewBox="0 0 14 44" fill="none">
+              <defs>
+                <linearGradient id="ng" x1="7" y1="0" x2="7" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#E63CB4"/>
+                  <stop offset="1" stop-color="#682A8D"/>
+                </linearGradient>
+              </defs>
+              <path d="M7 0 Q10 8 12 22 L9 40 Q7 44 5 40 L2 22 Q4 8 7 0Z" fill="url(#ng)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Alignment chevron at top -->
+        <div class="align-indicator" id="alignIndicator"></div>
+
+        <!-- Taco marker — sits on the perimeter, rotates to show TB bearing relative to heading -->
+        <div class="taco-marker-orbit" id="tacoOrbit">
+          <div class="taco-marker" id="tacoMarker">🌮</div>
+        </div>
+
+        <div class="center-hub"><div class="center-dot"></div></div>
+      </div>
+
+      <div class="distance-row">
+        <span class="distance-num">1.3</span>
+        <span class="distance-unit">MI</span>
+      </div>
+      <div class="tagline" id="tagline">TACO RADAR ACTIVE</div>
+    </div>
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <div class="control-row">
+    <label>You're facing:</label>
+    <input type="range" id="headingSlider" min="0" max="360" value="0">
+    <span class="val" id="headingVal">0°</span>
+  </div>
+  <div class="control-row">
+    <label>TB is at:</label>
+    <input type="range" id="bearingSlider" min="0" max="360" value="45">
+    <span class="val" id="bearingVal">45°</span>
+  </div>
+  <div class="control-row" style="justify-content:center;">
+    <span class="dong-label" id="dongLabel">🌮 DONG! 🌮</span>
+  </div>
+</div>
+
+<script>
+  function drawTicks(svg) {
+    const cx = 70, cy = 70, outerR = 58, majorLen = 6, minorLen = 3;
+    for (let i = 0; i < 72; i++) {
+      const angle = (i * 5 - 90) * Math.PI / 180;
+      const isMajor = i % 6 === 0;
+      const innerR = outerR - (isMajor ? majorLen : minorLen);
+      const x1 = cx + Math.cos(angle) * outerR;
+      const y1 = cy + Math.sin(angle) * outerR;
+      const x2 = cx + Math.cos(angle) * innerR;
+      const y2 = cy + Math.sin(angle) * innerR;
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+      line.setAttribute('stroke', isMajor ? 'rgba(190,80,255,0.35)' : 'rgba(104,42,141,0.3)');
+      line.setAttribute('stroke-width', isMajor ? '1.5' : '0.5');
+      svg.appendChild(line);
+    }
+  }
+
+  drawTicks(document.getElementById('ticksSvg'));
+
+  const headingSlider = document.getElementById('headingSlider');
+  const bearingSlider = document.getElementById('bearingSlider');
+  const headingVal = document.getElementById('headingVal');
+  const bearingVal = document.getElementById('bearingVal');
+  const dial = document.getElementById('dial');
+  const tacoOrbit = document.getElementById('tacoOrbit');
+  const tacoMarker = document.getElementById('tacoMarker');
+  const labels = document.querySelectorAll('.clabel');
+  const alignIndicator = document.getElementById('alignIndicator');
+  const dongFlash = document.getElementById('dongFlash');
+  const dongLabel = document.getElementById('dongLabel');
+  const tagline = document.getElementById('tagline');
+
+  let wasAligned = false;
+
+  function angleDiff(a, b) {
+    let d = a - b;
+    while (d > 180) d -= 360;
+    while (d < -180) d += 360;
+    return d;
+  }
+
+  function update() {
+    const heading = parseFloat(headingSlider.value);
+    const bearing = parseFloat(bearingSlider.value);
+
+    // Dial rotates opposite heading so cardinal directions are correct
+    dial.style.transform = `rotate(${-heading}deg)`;
+
+    // Counter-rotate labels to keep text upright
+    labels.forEach(l => l.style.transform = `rotate(${heading}deg)`);
+
+    // Taco marker: shows bearing relative to heading
+    // bearing - heading = where TB is relative to where you're facing
+    const relativeAngle = bearing - heading;
+    tacoOrbit.style.transform = `rotate(${relativeAngle}deg)`;
+
+    // Check alignment (taco near top = you're pointing at TB)
+    const diff = Math.abs(angleDiff(bearing, heading));
+    const isAligned = diff <= 15;
+
+    tacoMarker.className = 'taco-marker' + (isAligned ? ' aligned' : '');
+    alignIndicator.className = 'align-indicator' + (isAligned ? ' active' : '');
+    tagline.className = 'tagline' + (isAligned ? ' active' : '');
+    tagline.textContent = isAligned ? '🌮 ON TARGET 🌮' : 'TACO RADAR ACTIVE';
+
+    // DONG trigger
+    if (isAligned && !wasAligned) {
+      dongFlash.classList.remove('active');
+      void dongFlash.offsetWidth; // reflow
+      dongFlash.classList.add('active');
+      dongLabel.classList.add('active');
+      setTimeout(() => dongLabel.classList.remove('active'), 1000);
+    }
+    wasAligned = isAligned;
+
+    headingVal.textContent = heading + '°';
+    bearingVal.textContent = bearing + '°';
+  }
+
+  headingSlider.addEventListener('input', update);
+  bearingSlider.addEventListener('input', update);
+  update();
+</script>
+</body>
+</html>
